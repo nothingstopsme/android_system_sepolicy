@@ -36,4 +36,6 @@ allow cameraserver surfaceflinger_service:service_manager find;
 neverallow cameraserver { file_type fs_type }:file execute_no_trans;
 
 # cameraserver should never need network access. Disallow network sockets.
-neverallow cameraserver domain:{ tcp_socket udp_socket rawip_socket } *;
+#neverallow cameraserver domain:{ tcp_socket udp_socket rawip_socket } *;
+neverallow cameraserver domain:{ udp_socket rawip_socket } *;
+neverallow cameraserver { domain -cameraserver }:tcp_socket *;
